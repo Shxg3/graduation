@@ -1,59 +1,168 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>تطبيق التحكم عن بُعد - التحكم في الأجهزة</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
+      background-color: #ececec;
+      margin: 0;
+      padding: 0;
     }
 
     .container {
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      flex-direction: column; /* تغيير الاتجاه إلى عمودي */
+      min-height: 100vh;
     }
 
     .devices-container {
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      background-color: rgb(49, 8, 215);
+      padding: 20px;
+      max-width: 600px; /* تحديد العرض الأقصى للأجهزة */
+      margin: 0 auto; /* توسيط العرض */
+    }
+
+    .device {
+      width: 100%;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 20px;
+      background-color: #f9f9f9;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .device div {
+      display: flex;
       align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .device-icon {
+      width: 80px;
+      height: 80px;
+      margin-right: 10px;
+    }
+
+    .device-name {
+      font-weight: bold;
+      font-size: 18px;
     }
 
     .device-button {
-      width: 200px;
-      padding: 10px;
-      margin: 10px;
-      background-color: #008CBA;
-      color: white;
-      font-size: 18px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 8px;
       border: none;
       cursor: pointer;
-      border-radius: 4px;
+      background-color: #ccc;
+      color: #fff;
     }
 
-    .device-button:hover {
-      background-color: #004e6b;
+    .device-button.on {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .device-button.off {
+      background-color: #FF0000;
+      color: white;
+    }
+
+    .icons-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .icon {
+      width: 100px;
+      height: 100px;
+      margin: 10px;
+      border-radius: 50%;
+      background-color: #fff;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease-in-out;
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+    }
+
+    .icon:hover {
+      transform: scale(1.1);
+    }
+
+    .icon img {
+      width: 70px;
+      height: 70px;
+      margin: 15px;
     }
   </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
   <div class="container">
     <div class="devices-container">
-     <h1>الأجهزة</h1>
-      <button class="device-button">تشغيل الكمبيوتر</button>
-      <button class="device-button">إيقاف تشغيل الكمبيوتر</button>
-      <button class="device-button">تشغيل الإضاءة</button>
-      <button class="device-button">إيقاف تشغيل الإضاءة</button>
-      <button class="device-button" onclick="goBack()">عودة</button>
+      <div class="device">
+        <div>
+          <img class="device-icon" src="computer-icon.png" alt="Computer Icon">
+          <span class="device-name">Computer</span>
+        </div>
+        <button class="device-button off" onclick="toggleDevice(this)">Off</button>
+      </div>
+      <div class="device">
+        <div>
+          <img class="device-icon" src="light-icon.png" alt="Light Icon">
+          <span class="device-name">Light</span>
+        </div>
+        <button class="device-button off" onclick="toggleDevice(this)">Off</button>
+      </div>
+      <div class="device">
+        <div>
+          <img class="device-icon" src="tv-icon.png" alt="TV Icon">
+          <span class="device-name">TV</span>
+        </div>
+        <button class="device-button off" onclick="toggleDevice(this)">Off</button>
+      </div>
+      <div class="device">
+        <div>
+          <img class="device-icon" src="speaker-icon.png" alt="Speaker Icon">
+          <span class="device-name">Speaker</span>
+        </div>
+        <button class="device-button off" onclick="toggleDevice(this)">Off</button>
+      </div>
+    </div>
+    <div class="icons-container">
+      <a href="user interface.html" class="icon">
+        <img src="home.png" alt="Home">
+      </a>
+      <a href="add_device.html" class="icon">
+        <img src="add_device.png" alt="add device">
+      </a>
+      <a href="profile.html" class="icon">
+        <img src="profile.png" alt="profile">
+      </a>
     </div>
   </div>
-
   <script>
-    function goBack() {
-      // قم بتحويل المستخدم إلى صفحة تسجيل الدخول
-      window.location.href = 'log in.html';
+    function toggleDevice(button) {
+      if (button.classList.contains('on')) {
+        button.classList.remove('on');
+        button.classList.add('off');
+        button.textContent = 'off';
+      } else {
+        button.classList.remove('off');
+        button.classList.add('on');
+        button.textContent = 'on';
+      }
     }
   </script>
 </body>
